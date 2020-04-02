@@ -1,38 +1,25 @@
-// Definimos los pines donde tenemos conectadas las bobinas
-#define IN1 8
-#define IN2 9
-#define IN3 10
-#define IN4 11
+// Incluímos la librería para poder utilizarla
+#include <Stepper.h>
 
-// Secuencia de pasos (par máximo)
-int paso[8][4] =
-    {
-        {1, 0, 0, 0},
-        {1, 1, 0, 0},
-        {0, 1, 0, 0},
-        {0, 1, 1, 0},
-        {0, 0, 1, 0},
-        {0, 0, 1, 1},
-        {0, 0, 0, 1},
-        {1, 0, 0, 1}};
+// Esto es el número de pasos por revolución
+#define STEPS 4096
+// Número de pasos que queremos que de
+#define NUMSTEPS 100
+
+// Constructor, pasamos STEPS y los pines donde tengamos conectado el motor
+Stepper stepper(STEPS, 8, 9, 10, 11);
 
 void setup()
 {
-    // Todos los pines en modo salida
-    pinMode(IN1, OUTPUT);
-    pinMode(IN2, OUTPUT);
-    pinMode(IN3, OUTPUT);
-    pinMode(IN4, OUTPUT);
+    // Asignamos la velocidad en RPM (Revoluciones por Minuto)
+    stepper.setSpeed(5);
+    Serial.begin(9600);
 }
 
 void loop()
 {
-    for (int i = 0; i < 8; i++)
-    {
-        digitalWrite(IN1, paso[i][0]);
-        digitalWrite(IN2, paso[i][1]);
-        digitalWrite(IN3, paso[i][2]);
-        digitalWrite(IN4, paso[i][3]);
-        delay(10);
-    }
+    // Movemos el motor un número determinado de pasos
+    stepper.step(NUMSTEPS);
+    delay(2000);
+    Serial.println("Test");
 }
