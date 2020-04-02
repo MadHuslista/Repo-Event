@@ -2,9 +2,9 @@
 #include <Stepper.h>
 
 // Esto es el número de pasos por revolución
-#define STEPS 4096
+#define STEPS 1024
 // Número de pasos que queremos que de
-#define NUMSTEPS 100
+#define NUMSTEPS 256
 
 // Constructor, pasamos STEPS y los pines donde tengamos conectado el motor
 Stepper stepper(STEPS, 8, 9, 10, 11);
@@ -12,7 +12,7 @@ Stepper stepper(STEPS, 8, 9, 10, 11);
 void setup()
 {
     // Asignamos la velocidad en RPM (Revoluciones por Minuto)
-    stepper.setSpeed(5);
+    stepper.setSpeed(1);
     Serial.begin(9600);
 }
 
