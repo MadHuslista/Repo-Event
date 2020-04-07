@@ -1,0 +1,4 @@
+{
+    "sketch": "Step_Motor.ino",
+    "board": "arduino:avr:uno"
+}
