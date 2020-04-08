@@ -4,6 +4,8 @@ Purpose: Control PWM ventilator
 
 #define IA 11
 #define IB 10
+int pot;
+float waiting_time;
 
 void setup()
 {
@@ -13,8 +15,11 @@ void setup()
 }
 void loop()
 {
-    ventilation(60, 2);
-    Serial.println("BPM: 60, I:E = 1:2");
+
+    //Serial.println(pot);
+
+    ventilation(60, 1);
+    //Serial.println("BPM: 60, I:E = 1:2");
 
     /* MAÑANA AGREGAR CONTROL CON POTENCIÓMETRO. 
        ELIMINAR LA NECESIDAD DEL DELAI. 
@@ -46,21 +51,44 @@ void ventilation(int bpm, int Esp)
     float ins_rpm = 30.0 / ins_time;
     float esp_rpm = 30.0 / esp_time; //revisado y correcto
 
-    Serial.print(ins_time, 4);
+    /* Serial.print(ins_time, 4);
     Serial.print(",");
     Serial.print(esp_time, 4);
     Serial.print("        ");
     Serial.print(ins_rpm, 4);
     Serial.print(",");
-    Serial.println(esp_rpm, 4);
+    Serial.println(esp_rpm, 4); */
 
     int ins_pwm = 255.0 * (ins_rpm / 109.0);
     int esp_pwm = 255.0 * (esp_rpm / 109.0);
 
     girar(1, ins_pwm);
-    delay(ins_time * 1000);
+
+    waiting_time = millis();
+
+    while (millis() <= (waiting_time + (ins_time * 1000)))
+    {
+        pot = analogRead(A2);
+        Serial.print("I: ");
+        Serial.println(pot);
+        if ((pot >= 1000) || (pot <= 20))
+        {
+            break;
+        }
+    }
+
     girar(0, esp_pwm);
-    delay(esp_time * 1000);
+    waiting_time = millis();
+    while (millis() <= (waiting_time + (esp_time * 1000)))
+    {
+        pot = analogRead(A2);
+        Serial.print("E ");
+        Serial.println(pot);
+        if ((pot >= 1000) || (pot <= 20))
+        {
+            break;
+        }
+    }
 }
 
 void girar(int direction, int duty_cicle)
