@@ -1,0 +1,36 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "title": "Code_Process",
+    "description": "Orderer description of OpenLung code working",
+    "type": "array",
+    "items": {
+        "type": "object",
+        "properties": {
+            "function": {
+                "type": "string"
+            },
+            "purpose": {
+                "type": "string"
+            },
+            "called_from": {
+                "type": "array",
+                "items": {
+                    "type": "string"
+                }
+            },
+            "it_call_to": {
+                "type": "array",
+                "items": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
+
+{
+    "function": "",
+    "purpose": "",
+    "called_from": [],
+    "it_call_to": []
+}

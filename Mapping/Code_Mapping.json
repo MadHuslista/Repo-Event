@@ -1,0 +1,104 @@
+{
+    "code": [
+        {
+            "function": "beep",
+            "tipo": "action",
+            //REVISAR SI AGREGAR TIPO O ALGO SIMILAR 
+            //COSA DE IDENTIFICAR FUNCIONES QUE ENGLOBAN CÓDIGO HERRAMIENTA
+            //O CÓDIGOS QUE REFIEREN PROCESOS
+            "purpose": "Launch a beep sound",
+            "called_from": [
+                "setup",
+                "loop"
+            ],
+            "it_call_to": []
+        },
+        {
+            "function": "checkValues",
+            "purpose": "Revisa que los parámetros estén dentro de rangos adecuados",
+            "called_from": [
+                "eeput",
+                "eeget"
+            ],
+            "it_call_to": []
+        },
+        {
+            "function": "debounceKeyboard"
+        },
+        {
+            "function": "detectBMEsensor"
+        },
+        {
+            "function": "detectCurrentSensor"
+        },
+        {
+            "function": "displayBargraph"
+        },
+        {
+            "function": "displayMenu"
+        },
+        {
+            "function": "doDisplay"
+        },
+        {
+            "function": "eeget"
+        },
+        {
+            "function": "eeput"
+        },
+        {
+            "function": "limitValues"
+        },
+        {
+            "function": "loop"
+        },
+        {
+            "function": "meas"
+        },
+        {
+            "function": "pressOk"
+        },
+        {
+            "function": "pressPrevNext"
+        },
+        {
+            "function": "pressUpDown"
+        },
+        {
+            "function": "prstat"
+        },
+        {
+            "function": "readKeyboard"
+        },
+        {
+            "function": "readSensors"
+        },
+        {
+            "function": "SerialCommand"
+        },
+        {
+            "function": "SerialWait"
+        },
+        {
+            "function": "setDisplayMenu"
+        },
+        {
+            "function": "setup"
+        },
+        {
+            "function": "stepper"
+        },
+        {
+            "function": "sweepValues"
+        },
+        {
+            "function": "tab"
+        },
+        {
+            "function": "Timer"
+        },
+        {
+            "function": "tm"
+        }
+    ]
+}
