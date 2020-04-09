@@ -18,7 +18,7 @@ void loop()
 
     //Serial.println(pot);
 
-    ventilation(60, 1);
+    ventilation(50, 2);
     //Serial.println("BPM: 60, I:E = 1:2");
 
     /* MAÑANA AGREGAR CONTROL CON POTENCIÓMETRO. 
@@ -51,27 +51,27 @@ void ventilation(int bpm, int Esp)
     float ins_rpm = 30.0 / ins_time;
     float esp_rpm = 30.0 / esp_time; //revisado y correcto
 
-    /* Serial.print(ins_time, 4);
+    Serial.print(ins_time, 4);
     Serial.print(",");
     Serial.print(esp_time, 4);
     Serial.print("        ");
     Serial.print(ins_rpm, 4);
     Serial.print(",");
-    Serial.println(esp_rpm, 4); */
+    Serial.println(esp_rpm, 4);
 
     int ins_pwm = 255.0 * (ins_rpm / 109.0);
     int esp_pwm = 255.0 * (esp_rpm / 109.0);
 
-    girar(1, ins_pwm);
+    girar(1, ins_pwm); //Hacia el puente H
 
     waiting_time = millis();
 
     while (millis() <= (waiting_time + (ins_time * 1000)))
     {
         pot = analogRead(A2);
-        Serial.print("I: ");
-        Serial.println(pot);
-        if ((pot >= 1000) || (pot <= 20))
+        //Serial.print("I: ");
+        //Serial.println(pot);
+        if (pot >= 1000)
         {
             break;
         }
@@ -82,9 +82,9 @@ void ventilation(int bpm, int Esp)
     while (millis() <= (waiting_time + (esp_time * 1000)))
     {
         pot = analogRead(A2);
-        Serial.print("E ");
-        Serial.println(pot);
-        if ((pot >= 1000) || (pot <= 20))
+        //Serial.print("E ");
+        //Serial.println(pot);
+        if (pot <= 20)
         {
             break;
         }
